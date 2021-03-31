@@ -1,0 +1,41 @@
+<form class="row" [formGroup]="goodForm">
+    <div class="col-12 mt-2">
+        <h3 *ngIf="id > 0; else elseTemplate">Исправить данные о товаре</h3>
+        <ng-template #elseTemplate>
+            <h3>Добавить товар</h3>
+        </ng-template>
+    </div>
+    <div class="col-7 my-1">
+        <input type="text" class="form-control" placeholder="Название" formControlName="name">
+    </div>
+    <div class="col-7 my-1">
+        <input type="text" class="form-control" placeholder="Артикул" formControlName="vendorcode">
+    </div>
+    <div class="col-7 my-1">
+        <input type="text" class="form-control" placeholder="Цена" formControlName="price">
+    </div>
+    <div class="col-7 my-1">
+        <input type="text" class="form-control" placeholder="Производитель" formControlName="procreator">
+    </div>
+    <div class="col-7 my-1 mb-2">
+        <select class="custom-select" formControlName="category">
+            <option [ngValue]="MyGoodCategory.furniture">Furniture</option>
+            <option [ngValue]="MyGoodCategory.technology">Technology</option>
+            <option [ngValue]="MyGoodCategory.books">Books</option>
+            <option [ngValue]="MyGoodCategory.phones">Phones</option>
+        </select>
+    </div>
+    <div class="col-7 my-1">
+        <input type="text" class="form-control" placeholder="Вес" formControlName="weight">
+    </div>
+    <div class="col-7 my-1">
+        <input type="text" class="form-control" placeholder="Количество" formControlName="amount">
+    </div>
+    <div class="col-12 mt-1" *ngIf="goodForm.invalid">
+        <p [style.color]="'red'">Все поля обязательны, заполняйте внимательно</p>
+    </div>
+    <div class="col-7">
+        <button type="button" class="btn btn-primary col-3 mr-2"[disabled]="goodForm.invalid" (click)="onSave()">Сохранить</button>
+        <button type="button" class="btn btn-danger col-3"[disabled]="goodForm.invalid" *ngIf="id > 0" (click)="onDelete()">Удалить</button>
+    </div>
+</form>

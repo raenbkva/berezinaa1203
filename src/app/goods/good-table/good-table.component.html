@@ -1,0 +1,35 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col" [style.width]="'10%'">#</th>
+        <th scope="col" [style.width]="'15%'">Название</th>
+        <th scope="col" [style.width]="'10%'">Категория</th>
+        <th scope="col" [style.width]="'10%'">Вес</th>
+        <th scope="col" [style.width]="'10%'">Цена</th>
+        <th scope="col" [style.width]="'15%'">Количество</th>
+        <th scope="col" [style.width]="'20%'">
+            <button class="btn btn-primary" (click)="onAddGood()">
+                Добавить покупку
+            </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let good of goods">
+        <th scope="row"> {{good.id}} </th>
+        <td> {{good.name}} </td>
+        <td> {{getCategory(good.category)}} </td>
+        <td> {{good.weight}} </td>
+        <td> {{good.price}} </td>
+        <td> 
+          <button class="btn btn-light pb-2 mr-2" (click)="plusAmount(good)">+</button>
+          {{good.amount}} 
+          <button class="btn btn-light pb-2 ml-2" (click)="minusAmount(good)">-</button>
+        </td>
+        <td>
+          <button class="btn btn-primary mr-3" (click)="onEditGood(good.id)">Изменить</button>
+          <button class="btn btn-danger ml-1" (click)="onDeleteGood(good.id)">Удалить</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
